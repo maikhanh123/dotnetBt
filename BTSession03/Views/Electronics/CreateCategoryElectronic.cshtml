@@ -1,0 +1,16 @@
+﻿@model BTSession03.Models.CategoryElectronic
+@{
+    ViewBag.Title = "CreateCategoryElectronic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Category Electronic</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.Label("Name")
+        @Html.TextBox("Name", "", new { placeholder = "Category Name", @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
