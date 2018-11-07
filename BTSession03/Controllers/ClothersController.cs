@@ -38,6 +38,7 @@ namespace BTSession03.Controllers
 
         public ActionResult CreateCategoryClother()
         {
+            ViewBag.Action = "Clother";
             return View("~/Views/Shared/CategoryViewModel.cshtml");
         }
 
@@ -46,6 +47,7 @@ namespace BTSession03.Controllers
         {
             if (category.Name == null)
             {
+                ViewBag.Action = "Clother";
                 return View("~/Views/Shared/CategoryViewModel.cshtml");
             }
 
@@ -63,6 +65,7 @@ namespace BTSession03.Controllers
             {
                 CategoryClother = _context.CategoryClothers.ToList()
             };
+            ViewBag.Action = "Clother";
             return View("~/Views/Shared/CreateViewModel.cshtml", viewModel);
         }
 
@@ -76,6 +79,7 @@ namespace BTSession03.Controllers
                 {
                     CategoryClother = _context.CategoryClothers.ToList()
                 };
+                ViewBag.Action = "Clother";
                 return View("~/Views/Shared/CreateViewModel.cshtml", createViewModel);
             }
 

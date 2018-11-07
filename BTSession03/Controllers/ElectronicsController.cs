@@ -40,6 +40,7 @@ namespace BTSession03.Controllers
             {
                 CategoryElectronics = _context.CategoryElectronics.ToList()
             };
+            ViewBag.Action = "Electronic";
             return View("~/Views/Shared/CreateViewModel.cshtml", viewModel);
         }
 
@@ -52,6 +53,7 @@ namespace BTSession03.Controllers
                 {
                     CategoryClother = _context.CategoryClothers.ToList()
                 };
+                ViewBag.Action = "Electronic";
                 return View("~/Views/Shared/CreateViewModel.cshtml", createViewModel);
             }
 
@@ -75,6 +77,7 @@ namespace BTSession03.Controllers
 
         public ActionResult CreateCategoryElectronic()
         {
+            ViewBag.Action = "Electronic";
             return View("~/Views/Shared/CategoryViewModel.cshtml");
         }
 
@@ -83,6 +86,7 @@ namespace BTSession03.Controllers
         {
             if (category.Name == null)
             {
+                ViewBag.Action = "Electronic";
                 return View("~/Views/Shared/CategoryViewModel.cshtml");
             }
             var categoryElectronic = new CategoryElectronic();

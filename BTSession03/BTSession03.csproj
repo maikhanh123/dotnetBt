@@ -221,7 +221,6 @@
     <Compile Include="Models\CategoryClother.cs" />
     <Compile Include="Models\CategoryElectronic.cs" />
     <Compile Include="Models\Clother.cs" />
-    <Compile Include="Models\ClotherViewModel.cs" />
     <Compile Include="Models\CreateViewModel.cs" />
     <Compile Include="Models\Electronic.cs" />
     <Compile Include="Models\IdentityModels.cs" />
