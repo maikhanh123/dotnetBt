@@ -289,13 +289,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Electronics\Index.cshtml" />
-    <Content Include="Views\Electronics\CreateElectronic.cshtml" />
-    <Content Include="Views\Electronics\CreateCategoryElectronic.cshtml" />
     <Content Include="Views\Shared\_CategoryPartial.cshtml" />
     <Content Include="Views\Clothers\Index.cshtml" />
-    <Content Include="Views\Clothers\CreateCategoryClother.cshtml" />
-    <Content Include="Views\Clothers\CreateClother.cshtml" />
     <Content Include="Views\Shared\CreateViewModel.cshtml" />
+    <Content Include="Views\Shared\CategoryViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

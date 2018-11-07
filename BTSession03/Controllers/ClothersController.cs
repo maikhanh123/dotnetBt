@@ -38,28 +38,27 @@ namespace BTSession03.Controllers
 
         public ActionResult CreateCategoryClother()
         {
-            return View();
+            return View("~/Views/Shared/CategoryViewModel.cshtml");
         }
 
         [HttpPost]
-        public ActionResult CreateCategoryClother(CategoryClother categoryClother)
+        public ActionResult CreateCategoryClother(Category category)
         {
-            var category = categoryClother;
-            if (category == null)
+            if (category.Name == null)
             {
-                return View();
+                return View("~/Views/Shared/CategoryViewModel.cshtml");
             }
 
-            _context.CategoryClothers.Add(category);
+            var categoryClother = new CategoryClother();
+            categoryClother.Name = category.Name;
+
+            _context.CategoryClothers.Add(categoryClother);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult CreateClother()
         {
-//            var viewModel = new ClotherViewModel {CategoryClother = _context.CategoryClothers.ToList()};
-//            return View(viewModel);
-
             var viewModel = new CreateViewModel()
             {
                 CategoryClother = _context.CategoryClothers.ToList()
@@ -68,13 +67,16 @@ namespace BTSession03.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateClother(ClotherViewModel viewModel)
+        public ActionResult CreateClother(CreateViewModel viewModel)
         {
 
             if (!ModelState.IsValid)
             {
-                viewModel = new ClotherViewModel { CategoryClother = _context.CategoryClothers.ToList() };
-                return View(viewModel);
+                var createViewModel = new CreateViewModel()
+                {
+                    CategoryClother = _context.CategoryClothers.ToList()
+                };
+                return View("~/Views/Shared/CreateViewModel.cshtml", createViewModel);
             }
 
             var clother = new Clother
@@ -84,7 +86,7 @@ namespace BTSession03.Controllers
                 Price = viewModel.Price,
                 PriceReduce = viewModel.PriceReduce,
                 ImageUrl = viewModel.ImageUrl,
-                CategoryClotherId = viewModel.CategoryClotherId
+                CategoryClotherId = viewModel.CategoryId
                 
             };
 

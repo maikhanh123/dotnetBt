@@ -16,7 +16,8 @@ namespace BTSession03.Controllers
         // GET: Electronics
         public ActionResult Index()
         {
-            return View();
+            var electronic = _context.Electronics.ToList();
+            return View(electronic);
         }
 
         public ActionResult CategoryElectronicPartial()
@@ -24,7 +25,7 @@ namespace BTSession03.Controllers
             var categoryElectronics = _context.CategoryElectronics.ToList();
             var category = new List<Category>();
             foreach (var categoryElectronic in categoryElectronics)
-            { 
+            {
                 var temp = new Category();
                 temp.Id = categoryElectronic.Id;
                 temp.Name = categoryElectronic.Name;
@@ -42,22 +43,52 @@ namespace BTSession03.Controllers
             return View("~/Views/Shared/CreateViewModel.cshtml", viewModel);
         }
 
+        [HttpPost]
+        public ActionResult CreateElectronic(CreateViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                var createViewModel = new CreateViewModel()
+                {
+                    CategoryClother = _context.CategoryClothers.ToList()
+                };
+                return View("~/Views/Shared/CreateViewModel.cshtml", createViewModel);
+            }
+
+            var electronic = new Electronic()
+            {
+                Name = viewModel.Name,
+                Description = viewModel.Description,
+                Price = viewModel.Price,
+                PriceReduce = viewModel.PriceReduce,
+                Imageurl = viewModel.ImageUrl,
+                CategoryElectronicId = viewModel.CategoryId
+
+            };
+
+            _context.Electronics.Add(electronic);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult CreateCategoryElectronic()
         {
-
-            return View();
+            return View("~/Views/Shared/CategoryViewModel.cshtml");
         }
 
         [HttpPost]
-        public ActionResult CreateCategoryElectronic(CategoryElectronic categoryElectronic)
+        public ActionResult CreateCategoryElectronic(Category category)
         {
-            var category = categoryElectronic;
-            if (category == null)
+            if (category.Name == null)
             {
-                return View();
+                return View("~/Views/Shared/CategoryViewModel.cshtml");
             }
+            var categoryElectronic = new CategoryElectronic();
+            categoryElectronic.Name = category.Name;
 
-            _context.CategoryElectronics.Add(category);
+            _context.CategoryElectronics.Add(categoryElectronic);
             _context.SaveChanges();
             return RedirectToAction("Index");
 
