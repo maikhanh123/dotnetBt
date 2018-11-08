@@ -100,5 +100,29 @@ namespace BTSession03.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Detail(int id)
+        {
+            var clother = _context.Clothers.SingleOrDefault(cl => cl.Id == id);
+            if (clother == null)
+            {
+                return HttpNotFound();
+            }
+
+            var category = _context.CategoryClothers.Single(c => c.Id == clother.CategoryClotherId);
+
+            var product = new Product
+            {
+                Id = clother.Id,
+                Name = clother.Name,
+                Description = clother.Description,
+                Imageurl = clother.ImageUrl,
+                Price = clother.Price,
+                PriceReduce = clother.PriceReduce,
+                CategoryName = category.Name
+            };
+
+
+            return View("~/Views/Shared/DetailViewModel.cshtml", product);
+        }
     }
 }

@@ -3,51 +3,50 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div>
+    <h2>Electronic</h2>
+    <div class="row">
+        <div class="col-md-3 ">
+            @Html.Action("CategoryElectronicPartial")
+        </div>
 
-<h2>Electronic</h2>
-<div class="row">
-    <div class="col-md-3 ">
-        @Html.Action("CategoryElectronicPartial")
-    </div>
 
 
-
-    <div class="col-md-9">
-        @foreach (var electronic in Model)
-        {
-            <div class="col-md-4 marginBottom">
-                <div class="col-item">
-                    <div class="photo">
-                        <img src="@electronic.Imageurl" class="img-responsive" alt="a" />
-                    </div>
-                    <div class="info">
-                        <div class="row">
-                            <div class="price col-md-6">
-                                <h5>
-                                    @electronic.Name
-                                </h5>
-                                <h5 class="price-text-color">
-                                    @electronic.Price.ToString("C2")
-                                </h5>
+        <div class="col-md-9">
+            @foreach (var electronic in Model)
+            {
+                <div class="col-md-4 marginBottom">
+                    <div class="col-item">
+                        <div class="photo">
+                            <img src="@electronic.Imageurl" class="img-responsive" alt="a" />
+                        </div>
+                        <div class="info">
+                            <div class="row">
+                                <div class="price col-md-6">
+                                    <h5>
+                                        @electronic.Name
+                                    </h5>
+                                    <h5 class="price-text-color">
+                                        @electronic.Price.ToString("C2")
+                                    </h5>
+                                </div>
                             </div>
-                        </div>
-                        <div class="separator clear-left">
-                            <p class="btn-add">
-                                <a href="#" class="hidden-sm">Add to cart</a>
-                            </p>
-                            <p class="btn-details">
-                                <a href="#" class="hidden-sm">More details</a>
-                            </p>
-                        </div>
-                        <div class="clearfix">
+                            <div class="separator clear-left">
+                                <p class="btn-add">
+                                    <a href="#" class="hidden-sm">Add to cart</a>
+                                </p>
+                                <p class="btn-details">
+                                    <a href="@Url.Action("Detail","Electronics",new {id=electronic.Id})" class="hidden-sm">More details</a>
+                                </p>
+                            </div>
+                            <div class="clearfix">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
 
-        
+
+        </div>
     </div>
 </div>
-
-

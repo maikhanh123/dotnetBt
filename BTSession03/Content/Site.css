@@ -33,6 +33,13 @@ textarea {
                   
 }
 
+.center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 .marginBottom {
     margin-bottom: 30px
 }

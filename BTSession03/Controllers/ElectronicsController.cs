@@ -98,5 +98,30 @@ namespace BTSession03.Controllers
 
 
         }
+
+        public ActionResult Detail(int id)
+        {
+            var electronic = _context.Electronics.SingleOrDefault(e => e.Id == id);
+            if (electronic == null)
+            {
+                return HttpNotFound();
+            }
+
+            var category = _context.CategoryElectronics.Single(c => c.Id == electronic.CategoryElectronicId);
+
+            var product = new Product
+            {
+                Id = electronic.Id,
+                Name = electronic.Name,
+                Description = electronic.Description,
+                Imageurl = electronic.Imageurl,
+                Price = electronic.Price,
+                PriceReduce = electronic.PriceReduce,
+                CategoryName = category.Name
+            };
+
+
+            return View("~/Views/Shared/DetailViewModel.cshtml",product);
+        }
     }
 }
